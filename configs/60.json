@@ -1,0 +1,65 @@
+{
+  "data": {
+    "filename": "time600.csv",
+    "statistical_filename": "399001_statistics.csv",
+    "dir": "/normalized",
+    "columns": [
+      "o",
+      "h",
+      "l",
+      "c",
+      "vol",
+      "vol_buy",
+      "vol_sell",
+      "avg_buy",
+      "avg_sell",
+      "avg_amount_per_trade",
+      "vol_diff1",
+      "vol_diff2",
+      "vol_diff3",
+      "vol_diff4",
+      "vol_diff5",
+      "open_change",
+      "high_change",
+      "low_change",
+      "vol_change",
+      "action"
+    ],
+    "train_test_split": 0.9,
+    "normalise": "standardize"
+  },
+  "training": {
+    "epochs": 50,
+    "batch_size": 128
+  },
+  "model": {
+    "loss": "category",
+    "optimizer": "adam",
+    "save_dir": "saved_models",
+    "layers": [
+      {
+        "type": "dense",
+        "neurons": 100,
+        "activation": "relu"
+      },
+      {
+        "type": "dropout",
+        "rate": 0.2
+      },
+      {
+        "type": "dense",
+        "neurons": 30,
+        "activation": "relu"
+      },
+      {
+        "type": "dropout",
+        "rate": 0.2
+      },
+      {
+        "type": "dense",
+        "neurons": 4,
+        "activation": "softmax"
+      }
+    ]
+  }
+}
