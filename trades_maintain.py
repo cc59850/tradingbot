@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 import time
 from packages import binance as BINANCE
 from packages import account as ACCOUNT
