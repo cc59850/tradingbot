@@ -1,16 +1,4 @@
-Keras==2.2.5
-Keras-Applications==1.0.8
-Keras-Preprocessing==1.1.0
-keras-rectified-adam==0.12.0
-matplotlib==3.1.0
-numpy==1.16.4
 psycopg2==2.8.3
 requests==2.22.0
-scikit-image==0.15.0
-scikit-learn==0.21.2
-scipy==1.2.1
-six==1.12.0
-tensorboard==1.14.0
-tensorflow-estimator==1.14.0rc1
-tensorflow-gpu==1.14.0
+
 

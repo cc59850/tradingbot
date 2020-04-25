@@ -53,7 +53,7 @@ def digest_data(interval=86400, market='Kraken'):
             continue
         _trades=_trades.trades
         # _trades.reverse()
-        trades.extend(_trades)
+        # trades.extend(_trades)
         starting_timestamp=(int(_trades[-1].timestamp)/1000)
         starting_id=_trades[-1].tid+1
         local_time = time.gmtime(starting_timestamp)
@@ -62,22 +62,22 @@ def digest_data(interval=86400, market='Kraken'):
         cnt+=1
         time.sleep(1.5)
 
-    sqls=[]
-    for trade in trades:
-        param={
-            'timestamp':int(trade.timestamp),
-            'tid':trade.tid,
-            'price':trade.price,
-            'amount':trade.amount,
-            'trade_type':trade.trade_type,
-            'status':trade.status,
-            'order_type':'m',
-            'market':'binance'
-        }
-        sqls.append(param)
+        sqls=[]
+        for trade in _trades:
+            param={
+                'timestamp':int(trade.timestamp),
+                'tid':trade.tid,
+                'price':trade.price,
+                'amount':trade.amount,
+                'trade_type':trade.trade_type,
+                'status':trade.status,
+                'order_type':'m',
+                'market':'binance'
+            }
+            sqls.append(param)
 
-    pgmanager.execute_many(
-        "insert into " + table_name + "(timestamp,tid,price,amount,trade_type,status,order_type,market) values(%(timestamp)s,%(tid)s,%(price)s,%(amount)s,%(trade_type)s,%(status)s,%(order_type)s,%(market)s)",sqls)
+        pgmanager.execute_many(
+            "insert into " + table_name + "(timestamp,tid,price,amount,trade_type,status,order_type,market) values(%(timestamp)s,%(tid)s,%(price)s,%(amount)s,%(trade_type)s,%(status)s,%(order_type)s,%(market)s)",sqls)
 
 for cnt in range(500):
     digest_data(interval=86400)
